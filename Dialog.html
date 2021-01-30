@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.min.css">
+    <link rel="stylesheet" href="./Dialog.css">
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <script src="./Dialog.js"></script>
+    <script>
+
+        document.getElementById('btn').onclick = open
+        function open() {
+         let m1 =  M({
+            template:'今天我完成了插件组件的封装',
+            model:true,
+            buttons:[
+                {text:'确定',click:function(m){
+                    console.log(this)
+                }},
+                {text:'取消',click:function(){
+                    this.close()
+
+                }}
+            ],
+            drag:true,
+            onopen:function (m) {
+                console.log(this,m)
+            },
+            onclose:function(m){
+                console.log(this,m)
+            }
+        })
+        
+        m1.on('ondragstart',function(){
+            console.log('拖拽开始')
+        })
+
+        m1.on('ondraging',function(m){
+            console.log('拖拽中执行的函数')
+        })
+
+        m1.on('ondragend',function(m){
+            console.log('拖拽结束')
+        })
+        }
+    </script>
+</body>
+</html>
